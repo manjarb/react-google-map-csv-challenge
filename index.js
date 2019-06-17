@@ -3,7 +3,11 @@ import bodyParser from 'body-parser'
 
 const app = express()
 
-app.use(bodyParser({ limit: '75mb' }))
+app.use(bodyParser.urlencoded({
+  extended: true,
+}))
+app.use(bodyParser.json())
+
 app.use('/api/**', bodyParser.json())
 
 if (process.env.NODE_ENV === 'production') {
