@@ -8,7 +8,10 @@
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run local\" \"npm run client\"",
     "install:client": "npm install --prefix client",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compose:up": "docker-compose up",
+    "compose:up:build": "docker-compose up --build",
+    "compose:up:build:force": "docker-compose up --build --force-recreate"
   },
   "author": "",
   "license": "ISC",
