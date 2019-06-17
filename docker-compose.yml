@@ -34,7 +34,7 @@ services:
     networks:
       - front-tier
       - back-tier
-    command: "npm run client"
+    command: bash -c "npm rebuild node-sass --prefix client && npm run client"
 
 networks:
   front-tier:
