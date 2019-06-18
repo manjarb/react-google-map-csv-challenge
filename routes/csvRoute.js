@@ -21,10 +21,18 @@ const upload = multer({ storage }).single('fileUpload')
 
 export default (app) => {
   app.get('/api/csv/:id', async (req, res) => {
-    const csv = await Csv.findOne({ _id: req.params.id })
-
     try {
-      res.json({ result: {} })
+      const csv = await Csv.findOne({ _id: req.params.id })
+      csvtojson({
+        noheader: true,
+      })
+        .fromFile(`${dir}/${csv.saveName}`)
+        .then((jsonObj) => {
+          res.json({ result: jsonObj })
+        })
+        .catch((err) => {
+          res.status(422).json(err)
+        })
     } catch (err) {
       res.status(422).json(err)
     }
