@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { CsvUpload } from '../../components'
 
 const Container = styled.div`
   display: flex;
@@ -8,8 +9,9 @@ const Container = styled.div`
 export class Landing extends React.Component {
   render() {
     return (
-      <Container>
+      <Container className="container">
         <h1>Landing</h1>
+        <CsvUpload />
       </Container>
     )
   }
