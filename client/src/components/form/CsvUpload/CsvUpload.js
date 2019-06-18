@@ -6,7 +6,8 @@ import styled from 'styled-components'
 import { uploadCsv } from '../../../redux/actions/index'
 
 const Container = styled.div`
-
+  padding-left: 15px;
+  padding-right: 15px;
 `
 
 export class CsvUploadImp extends React.Component {
@@ -21,6 +22,7 @@ export class CsvUploadImp extends React.Component {
       fileName: '',
     })
     actions.setSubmitting(false)
+    this.fileUploadInput.value = null
   }
 
   formValidate = (values) => {
