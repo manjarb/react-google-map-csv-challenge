@@ -1,6 +1,7 @@
 import fs from 'fs'
 import multer from 'multer'
 import mongoose from 'mongoose'
+import csvtojson from 'csvtojson'
 
 const dir = './upload'
 const Csv = mongoose.model('csv')
@@ -23,7 +24,7 @@ export default (app) => {
     const csv = await Csv.findOne({ _id: req.params.id })
 
     try {
-      res.json({ result: csv })
+      res.json({ result: {} })
     } catch (err) {
       res.status(422).json(err)
     }
@@ -45,13 +46,15 @@ export default (app) => {
         return res.status(422).json(err)
       }
 
-      const csv = new Csv({
+      console.log(req.file, ' :req.file.fileName //')
+
+      const csvUpload = new Csv({
         fileName: req.body.fileName,
-        location: req.file.fileName,
+        saveName: req.file.filename,
       })
 
       try {
-        await csv.save()
+        await csvUpload.save()
         const csvList = await Csv.find().sort({ created: 'desc' })
         res.json({ result: csvList })
       } catch (err2) {

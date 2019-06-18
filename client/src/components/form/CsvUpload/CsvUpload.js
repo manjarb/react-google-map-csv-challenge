@@ -80,6 +80,7 @@ export class CsvUploadImp extends React.Component {
                         id="portal-upload-form-file"
                         type="file"
                         name="fileUpload"
+                        accept="text/csv"
                         ref={(ref) => { this.fileUploadInput = ref }}
                         onChange={(event) => {
                           setFieldValue('fileUpload', event.currentTarget.files[0])
