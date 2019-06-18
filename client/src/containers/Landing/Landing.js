@@ -4,13 +4,13 @@ import { CsvUpload } from '../../components'
 
 const Container = styled.div`
   display: flex;
+  padding-top: 30px;
 `
 
 export class Landing extends React.Component {
   render() {
     return (
       <Container className="container">
-        <h1>Landing</h1>
         <CsvUpload />
       </Container>
     )

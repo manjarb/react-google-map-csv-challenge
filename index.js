@@ -1,5 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
+import CsvRoute from './routes/csvRoute'
 
 const app = express()
 
@@ -7,8 +8,9 @@ app.use(bodyParser.urlencoded({
   extended: true,
 }))
 app.use(bodyParser.json())
-
 app.use('/api/**', bodyParser.json())
+
+CsvRoute(app)
 
 if (process.env.NODE_ENV === 'production') {
   // Express wil serve up production assets

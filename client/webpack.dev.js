@@ -1,5 +1,7 @@
-const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
+const merge = require('webpack-merge')
+const common = require('./webpack.common.js')
+
+const proxyUrl = 'http://api:5000'
 
 module.exports = merge(common, {
   mode: 'development',
@@ -11,9 +13,13 @@ module.exports = merge(common, {
     historyApiFallback: true,
     proxy: {
       '/api': {
-        target: 'http://api:5000',
-        secure: false
-      }
-    }
-  }
-});
+        target: proxyUrl,
+        secure: false,
+      },
+      '/upload': {
+        target: proxyUrl,
+        secure: false,
+      },
+    },
+  },
+})

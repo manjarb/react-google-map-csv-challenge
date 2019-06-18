@@ -11,7 +11,6 @@ import { Landing } from './containers'
 const App = () => (
   <Provider store={store}>
     <Router>
-      <h1>TEST</h1>
       {/* <Route path="/" exact render={() => (<Redirect to="/admin" />)} /> */}
       {/* <Route path="/admin" exact component={Admin} /> */}
       <Route path="/" exact component={Landing} />

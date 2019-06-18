@@ -7,6 +7,8 @@ import { uploadCsv } from '../../../redux/actions/index'
 
 const Container = styled.div`
   padding-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
 `
 
 export class CsvUploadImp extends React.Component {
@@ -16,6 +18,7 @@ export class CsvUploadImp extends React.Component {
     formData.append('fileName', values.fileName)
 
     this.props.uploadCsv(formData)
+    actions.setSubmitting(false)
   }
 
   formValidate = (values) => {
