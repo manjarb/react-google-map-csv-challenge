@@ -1,6 +1,12 @@
 import express from 'express'
 import bodyParser from 'body-parser'
+import mongoose from 'mongoose'
+import keys from './config/keys'
+
+import './models/Csv'
 import CsvRoute from './routes/csvRoute'
+
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
 
 const app = express()
 

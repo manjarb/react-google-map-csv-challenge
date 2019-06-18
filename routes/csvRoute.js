@@ -1,25 +1,62 @@
+import fs from 'fs'
 import multer from 'multer'
+import mongoose from 'mongoose'
+
+const dir = './upload'
+const Csv = mongoose.model('csv')
 
 const storage = multer.diskStorage({
   destination(req, file, callback) {
-    callback(null, './uploads')
+    callback(null, dir)
   },
   filename(req, file, callback) {
-    callback(null, `${file.fileName}-${Date.now()}`)
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir)
+    }
+    callback(null, `${file.fieldname}-${Date.now()}`)
   },
 })
-const upload = multer({ storage })
+const upload = multer({ storage }).single('fileUpload')
 
 export default (app) => {
-  app.post('/upload/csv', async (req, res) => {
-    upload(req, res, (err) => {
-      console.log(req, ' :rrrr')
+  app.get('/api/csv/:id', async (req, res) => {
+    const csv = await Csv.findOne({ _id: req.params.id })
+
+    try {
+      res.json({ result: csv })
+    } catch (err) {
+      res.status(422).json(err)
+    }
+  })
+
+  app.get('/api/csv-list', async (req, res) => {
+    const csvList = await Csv.find().sort({ created: 'desc' })
+
+    try {
+      res.json({ result: csvList })
+    } catch (err) {
+      res.status(422).json(err)
+    }
+  })
+
+  app.post('/upload/csv', (req, res) => {
+    upload(req, res, async (err) => {
       if (err) {
         return res.status(422).json(err)
       }
-      return res.json({
-        result: [],
+
+      const csv = new Csv({
+        fileName: req.body.fileName,
+        location: req.file.fileName,
       })
+
+      try {
+        await csv.save()
+        const csvList = await Csv.find().sort({ created: 'desc' })
+        res.json({ result: csvList })
+      } catch (err2) {
+        res.status(422).json(err2)
+      }
     })
   })
 }

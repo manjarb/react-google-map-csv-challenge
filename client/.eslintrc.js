@@ -10,7 +10,8 @@ module.exports = {
     'react/prop-types': 'off',
     'react/no-array-index-key': 'off',
     'global-require': 'off',
-    "node/no-unsupported-features/es-syntax": 'off'
+    "node/no-unsupported-features/es-syntax": 'off',
+    'consistent-return': 'off'
   },
   'globals': {
     'fetch': false,
