@@ -26,9 +26,11 @@ export class LandingImp extends React.Component {
 
   render() {
     const { csvList } = this.props
-
     return (
-      <Container className="container">
+      <Container
+        className="container"
+        dataTestId="lading-container"
+      >
         <ContentBox>
           <CsvUpload />
         </ContentBox>
@@ -37,7 +39,10 @@ export class LandingImp extends React.Component {
             File List
           </h3>
 
-          <table className="table is-fullwidth">
+          <table
+            className="table is-fullwidth"
+            data-testid="csv-list-table"
+          >
             <thead>
               <tr>
                 <th>
@@ -53,7 +58,10 @@ export class LandingImp extends React.Component {
             </thead>
             <tbody>
               {csvList.map(csv => (
-                <tr key={csv._id}>
+                <tr
+                  key={csv._id}
+                  data-testid="csv-list-row"
+                >
                   <td>{csv.fileName}</td>
                   <td>{csv.created}</td>
                   <td><Link to={`/csv/${csv._id}`}>Choose</Link></td>

@@ -6,7 +6,7 @@ import {
 } from '@testing-library/react'
 import { CsvUploadImp } from './CsvUpload'
 
-describe('<CsvUpload />', () => {
+describe('<CsvUploadImp />', () => {
   let testLabel
   let testText
   let testId
@@ -25,7 +25,7 @@ describe('<CsvUpload />', () => {
     testDebug = debug
   })
 
-  test('renders a form with file, name, uploaded by and a submit button', async () => {
+  test('renders a form with file, name, uploaded by and a submit button', () => {
     expect(testId('csv-upload-form-container')).toHaveFormValues({
       fileUpload: '',
       fileName: '',
@@ -43,5 +43,9 @@ describe('<CsvUpload />', () => {
       expect(fileError).toHaveTextContent('Required')
       expect(nameError).toHaveTextContent('Required')
     })
+  })
+
+  test('Snapshot matched', () => {
+    expect(testId('csv-upload-form-container')).toMatchSnapshot()
   })
 })
