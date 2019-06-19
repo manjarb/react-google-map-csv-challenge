@@ -18,6 +18,10 @@ module.exports = {
     'document': true,
     'FormData': true,
     'google': true,
-    'alert': true
+    'alert': true,
+    'describe': true,
+    'beforeEach': true,
+    'test': true,
+    'expect': true
   }
 }

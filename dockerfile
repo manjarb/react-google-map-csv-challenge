@@ -3,7 +3,7 @@ FROM node:8.16.0-jessie
 RUN mkdir /app
 WORKDIR /app
 
-RUN npm install -g nodemon
+RUN npm install -g nodemon jest
 
 COPY package.json package.json
 COPY client/package.json client/package.json
