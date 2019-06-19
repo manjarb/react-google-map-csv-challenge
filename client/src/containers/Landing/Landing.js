@@ -14,7 +14,7 @@ const ContentBox = styled.div`
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 30px;
-  width: 620px;
+  width: 680px;
   margin-left: auto;
   margin-right: auto;
 `
@@ -26,7 +26,6 @@ export class LandingImp extends React.Component {
 
   render() {
     const { csvList } = this.props
-    console.log(csvList, ' :csvList')
 
     return (
       <Container className="container">
@@ -34,15 +33,18 @@ export class LandingImp extends React.Component {
           <CsvUpload />
         </ContentBox>
         <ContentBox>
-          <label className="label">
+          <h3 className="title is-4 has-text-centered">
             File List
-          </label>
+          </h3>
 
           <table className="table is-fullwidth">
             <thead>
               <tr>
                 <th>
                   File Name
+                </th>
+                <th>
+                  Created
                 </th>
                 <th>
                   Action
@@ -53,6 +55,7 @@ export class LandingImp extends React.Component {
               {csvList.map(csv => (
                 <tr key={csv._id}>
                   <td>{csv.fileName}</td>
+                  <td>{csv.created}</td>
                   <td><Link to={`/csv/${csv._id}`}>Choose</Link></td>
                 </tr>
               ))}

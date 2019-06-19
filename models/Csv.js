@@ -5,7 +5,7 @@ const csvSchema = new Schema({
     type: String,
     trim: true,
   },
-  location: {
+  saveName: {
     type: String,
     trim: true,
   },
@@ -18,7 +18,7 @@ const csvSchema = new Schema({
 csvSchema.index(
   {
     firstName: 1,
-    location: 1,
+    saveName: 1,
     created: 1,
   }, {
     name: 'csvFieldIndex',

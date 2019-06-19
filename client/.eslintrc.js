@@ -16,6 +16,8 @@ module.exports = {
   'globals': {
     'fetch': false,
     'document': true,
-    'FormData': true
+    'FormData': true,
+    'google': true,
+    'alert': true
   }
 }
