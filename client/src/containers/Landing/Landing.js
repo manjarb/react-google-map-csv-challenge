@@ -26,7 +26,6 @@ export class LandingImp extends React.Component {
 
   render() {
     const { csvList } = this.props
-    console.log(csvList, ' :csvList')
 
     return (
       <Container className="container">

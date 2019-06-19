@@ -54,8 +54,6 @@ export default (app) => {
         return res.status(422).json(err)
       }
 
-      console.log(req.file, ' :req.file.fileName //')
-
       const csvUpload = new Csv({
         fileName: req.body.fileName,
         saveName: req.file.filename,

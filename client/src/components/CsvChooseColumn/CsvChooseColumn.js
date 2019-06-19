@@ -102,8 +102,6 @@ export class CsvChooseColumn extends React.Component {
     })
 
     const { columns } = this.state
-    console.log(columns, 'rurur')
-    console.log(submitValue, ' susus')
     const filterColumns = columns.filter((col) => {
       let isFound = false
       Object.keys(submitValue).forEach((sKey) => {
@@ -136,8 +134,18 @@ export class CsvChooseColumn extends React.Component {
     }
   }
 
+  renderMap = () => {
+    this.props.submit(this.state.submitValue)
+  }
+
+  resetState = () => {
+    this.setState({
+      ...defaultState,
+      columns: this.modifyColumn(this.props.csvDetail),
+    })
+  }
+
   render() {
-    const { csvDetail } = this.props
     const {
       columns,
       cityColumns,
@@ -204,6 +212,23 @@ export class CsvChooseColumn extends React.Component {
               onChange={this.onChange}
               columns={categoryColumns}
             />
+            <div className="action-box">
+              <button
+                type="button"
+                className="button is-primary"
+                style={{ marginRight: '15px' }}
+                onClick={this.renderMap}
+              >
+                Render
+              </button>
+              <button
+                type="button"
+                className="button is-info"
+                onClick={this.resetState}
+              >
+                Reset
+              </button>
+            </div>
           </SelectBox>
         )}
       </div>
