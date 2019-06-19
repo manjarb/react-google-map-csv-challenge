@@ -7,10 +7,16 @@ import { MapDisplay, CsvChooseColumn } from '../../components'
 
 const Container = styled.div`
   display: flex;
+  height: 100vh;
 `
 
 const LeftBox = styled.div`
   padding: 30px;
+`
+
+const RightBox = styled.div`
+  flex: 1;
+  display: flex;
 `
 
 export class DetailImp extends React.Component {
@@ -27,7 +33,6 @@ export class DetailImp extends React.Component {
   }
 
   renderMap = (submitValue) => {
-    console.log(submitValue, ' submitValue')
     const {
       address,
       category,
@@ -47,20 +52,23 @@ export class DetailImp extends React.Component {
       })
     })
 
-    console.log(mapFilteredData, ' mmmm')
+    this.setState({
+      mapDetailsValue: mapFilteredData,
+    })
   }
 
   render() {
     const { csvDetail } = this.props
+    const { mapDetailsValue } = this.state
 
     return (
       <Container>
         <LeftBox>
           {(csvDetail && csvDetail.length > 0) && <CsvChooseColumn csvDetail={csvDetail[0]} submit={this.renderMap} />}
         </LeftBox>
-        <div>
-          <MapDisplay />
-        </div>
+        <RightBox>
+          {mapDetailsValue.length > 0 && <MapDisplay data={mapDetailsValue} />}
+        </RightBox>
       </Container>
     )
   }
