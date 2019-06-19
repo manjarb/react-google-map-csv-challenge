@@ -20,7 +20,7 @@ module.exports = {
   // The paths to modules that run some code to configure or set up the testing environment before each test
   // setupFiles: ['<rootDir>/enzyme.config.js'],
   // setupFilesAfterEnv: ['./test/setup-test-framework.js'],
-  setupFilesAfterEnv: ['./node_modules/jest-enzyme/lib/index.js', '<rootDir>/jest.init.js', '@testing-library/react/cleanup-after-each'],
+  setupFilesAfterEnv: ['<rootDir>/jest.init.js', '@testing-library/react/cleanup-after-each'],
 
   // The test environment that will be used for testing
   testEnvironment: 'jsdom',

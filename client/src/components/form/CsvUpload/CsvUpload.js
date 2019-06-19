@@ -71,13 +71,13 @@ export class CsvUploadImp extends React.Component {
                   <div className="field">
                     <label
                       className="label"
-                      htmlFor="portal-upload-form-file"
+                      htmlFor="csv-upload-form-file"
                     >
                       CSV file
                     </label>
                     <div className="control">
                       <input
-                        id="portal-upload-form-file"
+                        id="csv-upload-form-file"
                         type="file"
                         name="fileUpload"
                         accept="text/csv"
@@ -88,7 +88,7 @@ export class CsvUploadImp extends React.Component {
                       />
                       <p
                         className="help is-danger"
-                        data-testid="portal-upload-file-error"
+                        data-testid="csv-upload-file-error"
                       >
                         {(errors.fileUpload && touched.fileUpload) && errors.fileUpload}
                       </p>
@@ -99,7 +99,7 @@ export class CsvUploadImp extends React.Component {
                   <div className="field">
                     <label
                       className="label"
-                      htmlFor="portal-upload-form-name"
+                      htmlFor="csv-upload-form-name"
                     >
                       File name (No extension needed)
                     </label>
@@ -116,7 +116,7 @@ export class CsvUploadImp extends React.Component {
 
                       <p
                         className="help is-danger"
-                        data-testid="portal-upload-name-error"
+                        data-testid="csv-upload-name-error"
                       >
                         {(errors.fileName && touched.fileName) && errors.fileName}
                       </p>
