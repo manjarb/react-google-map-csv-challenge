@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CsvUploadImp /> Snapshot matched 1`] = `
+<form
+  data-testid="csv-upload-form-container"
+>
+  <div
+    class="columns"
+  >
+    <div
+      class="column is-6"
+    >
+      <div
+        class="field"
+      >
+        <label
+          class="label"
+          for="csv-upload-form-file"
+        >
+          CSV file
+        </label>
+        <div
+          class="control"
+        >
+          <input
+            accept="text/csv"
+            id="csv-upload-form-file"
+            name="fileUpload"
+            type="file"
+          />
+          <p
+            class="help is-danger"
+            data-testid="csv-upload-file-error"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="column is-6"
+    >
+      <div
+        class="field"
+      >
+        <label
+          class="label"
+          for="csv-upload-form-name"
+        >
+          File name (No extension needed)
+        </label>
+        <div
+          class="control"
+        >
+          <input
+            class="input "
+            id="csv-upload-form-name"
+            name="fileName"
+            placeholder="File name"
+            type="text"
+            value=""
+          />
+          <p
+            class="help is-danger"
+            data-testid="csv-upload-name-error"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="submit-box"
+  >
+    <button
+      class="button is-primary"
+      data-testid="csv-upload-submit-button"
+      type="submit"
+    >
+      Upload CSV
+    </button>
+  </div>
+</form>
+`;
