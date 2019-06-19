@@ -1,9 +1,8 @@
 import React from 'react'
-import { Formik } from 'formik'
 import styled from 'styled-components'
 
 const SelectBox = styled.div`
-  
+  margin-bottom: 15px;
 `
 
 const keys = {
@@ -48,22 +47,24 @@ const SelectOption = ({
   </SelectBox>
 )
 
+const defaultState = {
+  submitValue: {},
+  columns: [],
+  cityColumns: [],
+  stateColumns: [],
+  zipCodeColumns: [],
+  categoryColumns: [],
+  [keys.address]: '',
+  [keys.city]: '',
+  [keys.state]: '',
+  [keys.zipCode]: '',
+  [keys.category]: '',
+}
+
 export class CsvChooseColumn extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      submitValue: {},
-      columns: [],
-      cityColumns: [],
-      stateColumns: [],
-      zipCodeColumns: [],
-      categoryColumns: [],
-      [keys.address]: '',
-      [keys.city]: '',
-      [keys.state]: '',
-      [keys.zipCode]: '',
-      [keys.category]: '',
-    }
+    this.state = defaultState
   }
 
   componentDidMount() {
@@ -86,7 +87,9 @@ export class CsvChooseColumn extends React.Component {
 
   onChange = (e, selectType) => {
     const { value } = e.target
+    const stateSubmitValue = this.state.submitValue
     const submitValue = {
+      ...stateSubmitValue,
       [selectType]: {
         originKey: value,
         selectKey: selectType,
@@ -100,7 +103,17 @@ export class CsvChooseColumn extends React.Component {
 
     const { columns } = this.state
     console.log(columns, 'rurur')
-    const filterColumns = columns.filter(col => col.key !== value)
+    console.log(submitValue, ' susus')
+    const filterColumns = columns.filter((col) => {
+      let isFound = false
+      Object.keys(submitValue).forEach((sKey) => {
+        if (submitValue[sKey].originKey === col.key) {
+          isFound = true
+        }
+      })
+      return !isFound
+    })
+
     if (selectType === keys.address) {
       this.setState({
         cityColumns: filterColumns,
@@ -128,6 +141,9 @@ export class CsvChooseColumn extends React.Component {
     const {
       columns,
       cityColumns,
+      stateColumns,
+      zipCodeColumns,
+      categoryColumns,
       address,
       city,
       state,
@@ -154,6 +170,39 @@ export class CsvChooseColumn extends React.Component {
               label="City"
               onChange={this.onChange}
               columns={cityColumns}
+            />
+          </SelectBox>
+        )}
+        {(city) && (
+          <SelectBox>
+            <SelectOption
+              name={keys.state}
+              inputValue={state}
+              label="State"
+              onChange={this.onChange}
+              columns={stateColumns}
+            />
+          </SelectBox>
+        )}
+        {(state) && (
+          <SelectBox>
+            <SelectOption
+              name={keys.zipCode}
+              inputValue={zipCode}
+              label="Zip Code"
+              onChange={this.onChange}
+              columns={zipCodeColumns}
+            />
+          </SelectBox>
+        )}
+        {(zipCode) && (
+          <SelectBox>
+            <SelectOption
+              name={keys.category}
+              inputValue={category}
+              label="Category"
+              onChange={this.onChange}
+              columns={categoryColumns}
             />
           </SelectBox>
         )}
