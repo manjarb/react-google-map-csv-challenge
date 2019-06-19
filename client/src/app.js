@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 
 import store from './redux/store'
 import { Landing, Detail, Login } from './containers'
-import { Auth } from './auth/auth'
+import { Auth } from './helper/auth/auth'
 
 const Public = () => <h3>Public Content</h3>
 const Protected = () => <h3>Protected Content</h3>
