@@ -10,7 +10,7 @@ const Container = styled.div`
 `
 
 const LeftBox = styled.div`
-  padding: 15px;
+  padding: 30px;
 `
 
 export class DetailImp extends React.Component {
@@ -20,10 +20,12 @@ export class DetailImp extends React.Component {
   }
 
   render() {
+    const { csvDetail } = this.props
+
     return (
       <Container>
         <LeftBox>
-          <CsvChooseColumn />
+          {(csvDetail && csvDetail.length > 0) && <CsvChooseColumn csvDetail={csvDetail[1]} />}
         </LeftBox>
         <div>
           <MapDisplay />
