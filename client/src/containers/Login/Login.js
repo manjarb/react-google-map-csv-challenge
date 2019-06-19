@@ -23,7 +23,7 @@ export class Login extends React.Component {
   formSubmit = (values, actions) => {
     axios({
       method: 'post',
-      url: `http://neat-mvp-api.herokuapp.com/v1/auth?email=${values.email}&password=${values.pass()}`,
+      url: `http://neat-mvp-api.herokuapp.com/v1/auth?email=${values.email}&password=${values.password}`,
     }).then((res) => {
       Auth.authenticate(() => {
         this.setState(() => ({
@@ -105,6 +105,13 @@ export class Login extends React.Component {
                         value={values.email}
                         name="email"
                       />
+
+                      <p
+                        className="help is-danger"
+                        data-testid="csv-upload-name-error"
+                      >
+                        {(errors.email && touched.email) && errors.email}
+                      </p>
                     </div>
                   </div>
 
@@ -120,6 +127,12 @@ export class Login extends React.Component {
                         value={values.password}
                         name="password"
                       />
+
+                      <p
+                        className="help is-danger"
+                      >
+                        {(errors.password && touched.password) && errors.password}
+                      </p>
                     </div>
                   </div>
 
